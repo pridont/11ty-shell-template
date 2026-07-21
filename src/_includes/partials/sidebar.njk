@@ -1,0 +1,15 @@
+<aside class="sidebar">
+  <a class="sidebar__brand" href="/">{% for line in profile.nameLines %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</a>
+  <p class="sidebar__role">{{ profile.role }}<br>{{ profile.institution }}</p>
+
+  <nav class="sidebar__nav" aria-label="Main">
+    {% set navLinkClass = "nav__link" %}
+    {% include "partials/nav-links.njk" %}
+  </nav>
+
+  <div class="sidebar__foot">
+    {% include "partials/theme-toggle.njk" %}
+    <a class="link-accent" href="{{ profile.cv.url }}">{{ profile.cv.label }}</a>
+    <a class="sidebar__email" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+  </div>
+</aside>

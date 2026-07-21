@@ -1,0 +1,16 @@
+{
+  "name": "gz-site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Academic personal site built with Eleventy",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

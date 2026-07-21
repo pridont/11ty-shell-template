@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Contact
+---
+<div class="measure-52">
+  <h1 class="page__title">{{ title }}</h1>
+  <p class="contact__intro">{{ profile.contact.intro }}</p>
+
+  <dl class="contact__rows">
+    {% for row in profile.contact.rows %}
+      <div class="contact__row">
+        <dt class="contact__key">{{ row.label }}</dt>
+        <dd class="contact__value">{% if row.href %}<a href="{{ row.href }}">{{ row.value }}</a>{% else %}{{ row.value }}{% endif %}</dd>
+      </div>
+    {% endfor %}
+  </dl>
+
+  <div class="contact__links">
+    {% for link in profile.contact.links %}
+      <a class="link-accent link-accent--bold" href="{{ link.url }}">{{ link.label }}</a>
+    {% endfor %}
+  </div>
+</div>

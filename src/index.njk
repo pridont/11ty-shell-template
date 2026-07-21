@@ -1,0 +1,15 @@
+---
+layout: base.njk
+---
+<h1 class="home__headline">{{ profile.home.headline | safe }}</h1>
+<p class="home__lede">{{ profile.home.lede }}</p>
+
+<h2 class="eyebrow">Recent writing</h2>
+<div class="recent">
+  {% for post in collections.writing | reverse | limit(3) %}
+    <a class="recent__row" href="{{ post.url }}">
+      <time class="recent__date" datetime="{{ post.date | isoDate }}">{{ post.date | monthYear }}</time>
+      <span class="recent__title">{{ post.data.title }}</span>
+    </a>
+  {% endfor %}
+</div>

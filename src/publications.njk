@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Publications
+---
+<div class="measure-60">
+  <h1 class="page__title page__title--loose">{{ title }}</h1>
+
+  <h2 class="eyebrow">Books</h2>
+  {% for pub in publications | whereType("book") %}
+    <p class="pub">{{ pub.authors }} ({{ pub.year }}). <em>{{ pub.title }}</em>. {{ pub.venue }}.</p>
+  {% endfor %}
+
+  <h2 class="eyebrow eyebrow--spaced">Articles</h2>
+  {% for pub in publications | whereType("article") %}
+    <div class="pub-row">
+      <p class="pub">{{ pub.authors }} ({{ pub.year }}). {{ pub.title }}. <em class="pub__venue">{{ pub.venue }}</em>.</p>
+      {% if pub.pdf %}<a class="pub__pdf" href="{{ pub.pdf }}">PDF<span class="visually-hidden">: {{ pub.title }}</span></a>{% endif %}
+    </div>
+  {% endfor %}
+</div>

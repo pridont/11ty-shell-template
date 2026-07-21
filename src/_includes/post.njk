@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+<article class="article">
+  <a class="article__back" href="/writing/">&larr; All writing</a>
+  {% if cover %}
+    {# Above the fold — eager, unlike in-body figures. #}
+    <img class="article__cover" src="{{ cover }}" alt="{{ coverAlt | default('') }}"
+         width="1600" height="900" fetchpriority="high" decoding="async">
+  {% endif %}
+  <time class="article__date" datetime="{{ page.date | isoDate }}">{{ page.date | monthYear }}</time>
+  <h1 class="article__title">{{ title }}</h1>
+  {% if excerpt %}<p class="article__lede">{{ excerpt }}</p>{% endif %}
+  <div class="article__body">
+    {{ content | safe }}
+  </div>
+</article>

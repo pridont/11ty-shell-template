@@ -1,0 +1,31 @@
+{# Header and overlay are one unit: the hamburger's aria-controls targets the overlay id. #}
+<header class="mobile-header">
+  <a class="mobile-header__brand" href="/">{{ profile.name }}</a>
+  <button type="button" class="hamburger" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+    <span class="visually-hidden">Menu</span>
+    <span class="hamburger__bar" aria-hidden="true"></span>
+    <span class="hamburger__bar" aria-hidden="true"></span>
+    <span class="hamburger__bar" aria-hidden="true"></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <div class="mobile-menu__top">
+    <span class="mobile-menu__title">Menu</span>
+    <button type="button" class="mobile-menu__close" data-menu-toggle aria-expanded="true" aria-controls="mobile-menu">
+      <span class="visually-hidden">Close menu</span>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu__nav" aria-label="Main">
+    {% set navLinkClass = "menu__link" %}
+    {% include "partials/nav-links.njk" %}
+  </nav>
+
+  <div class="mobile-menu__foot">
+    {% include "partials/theme-toggle.njk" %}
+    <a class="link-accent" href="{{ profile.cv.url }}">{{ profile.cv.label }}</a>
+    <a class="mobile-menu__email" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+  </div>
+</div>

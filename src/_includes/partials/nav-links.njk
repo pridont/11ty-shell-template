@@ -1,0 +1,15 @@
+{#
+  The single source of nav markup — included by both the desktop sidebar and the
+  mobile menu. Set `navLinkClass` before including to style each context.
+
+  The `item.url == "/"` guard is load-bearing: without it, "/about/".startsWith("/")
+  marks Home active on every page. Section-matching means /writing/a-post/ still
+  highlights Writing.
+#}
+{% for item in navigation %}
+  {%- set isActive = (item.url == "/" and page.url == "/")
+                  or (item.url != "/" and page.url.startsWith(item.url)) -%}
+  <a href="{{ item.url }}"
+     class="{{ navLinkClass | default('nav__link') }}{% if isActive %} is-active{% endif %}"
+     {% if isActive %}aria-current="page"{% endif %}>{{ item.text }}</a>
+{% endfor %}

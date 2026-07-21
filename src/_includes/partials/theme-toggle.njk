@@ -1,0 +1,11 @@
+{#
+  Both labels ship in the DOM and CSS hides the wrong one per data-theme. That way the
+  correct label is right on first paint without waiting for JS, and there is no flash.
+
+  The label is wrapped in one span on purpose: the button is display:flex, so without it
+  each text span would become its own flex item and the 8px gap would land inside the text.
+#}
+<button type="button" class="theme-toggle" data-theme-toggle>
+  <span class="theme-toggle__dot" aria-hidden="true"></span>
+  <span class="theme-toggle__label"><span class="visually-hidden">Switch to </span><span class="theme-toggle__on-light">Dark</span><span class="theme-toggle__on-dark">Light</span> mode</span>
+</button>

@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: About
+---
+<div class="measure-56">
+  <h1 class="page__title">{{ title }}</h1>
+
+  {% for para in profile.about.body %}
+    <p class="about__para{% if not loop.first %} about__para--muted{% endif %}">{{ para | safe }}</p>
+  {% endfor %}
+
+  <div class="about__columns">
+    <div>
+      <h2 class="eyebrow">Areas</h2>
+      {% for area in profile.about.areas %}
+        <div class="about__area">{{ area }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      <h2 class="eyebrow">Education</h2>
+      {% for item in profile.about.education %}
+        <div class="about__edu">
+          <span class="about__edu-year">{{ item.year }}</span>
+          <span>{{ item.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <a class="cv-link" href="{{ profile.cv.url }}">{{ profile.cv.label }} (PDF) &rarr;</a>
+</div>

@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Writing
+intro: Essays and notes, newest first.
+---
+<h1 class="page__title page__title--tight">{{ title }}</h1>
+<p class="page__intro">{{ intro }}</p>
+
+{% for post in collections.writing | reverse %}
+  <article class="post-row">
+    <time class="post-row__date" datetime="{{ post.date | isoDate }}">{{ post.date | monthYear }}</time>
+    <h2 class="post-row__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+    <p class="post-row__excerpt">{{ post.data.excerpt }}</p>
+  </article>
+{% endfor %}

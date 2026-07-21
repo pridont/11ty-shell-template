@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {# Name comes from profile.json only — site.json deliberately has no `title`, so there
+     is one place to change who the site belongs to. #}
+  <title>{% if title %}{{ title }} · {{ profile.name }}{% else %}{{ profile.name }} — {{ profile.role }}, {{ profile.institution }}{% endif %}</title>
+  <meta name="description" content="{{ description | default(excerpt) | default(profile.name + " — " + site.description) }}">
+
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="{{ site.themeColor.light }}" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="{{ site.themeColor.dark }}" media="(prefers-color-scheme: dark)">
+
+  {# Runs before first paint so the theme never flashes. Always writes an explicit
+     data-theme, which is why the stylesheet has no prefers-color-scheme block at all. #}
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <link rel="preload" href="/assets/fonts/karla.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {% include "partials/sidebar.njk" %}
+  {% include "partials/mobile-nav.njk" %}
+
+  <main class="main" id="main">
+    {{ content | safe }}
+  </main>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
