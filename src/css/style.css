@@ -1,42 +1,9 @@
 /* ==========================================================================
-   Fonts
-   ========================================================================== */
-
-@font-face {
-  font-family: "Karla";
-  src: url("/assets/fonts/karla.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Karla";
-  src: url("/assets/fonts/karla-italic.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* IBM Plex Mono is not a variable font — discrete weights only. */
-@font-face {
-  font-family: "IBM Plex Mono";
-  src: url("/assets/fonts/ibm-plex-mono-400.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  src: url("/assets/fonts/ibm-plex-mono-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ==========================================================================
    Design tokens
+
+   Fonts come from Google Fonts — see the <link> in _includes/base.njk, which
+   requests only the weights used here: Karla 400–700 upright + 400 italic,
+   IBM Plex Mono 500.
 
    The <head> script always writes an explicit data-theme, so there is
    deliberately no @media (prefers-color-scheme) block here. Adding one would
@@ -57,8 +24,9 @@
   --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --sidebar-w: 220px;
-  --main-max: 660px;
+  /* In rem so the layout widens with the type scale instead of squeezing it. */
+  --sidebar-w: 13.75rem;
+  --main-max: 41.25rem;
 }
 
 [data-theme="dark"] {
@@ -83,6 +51,9 @@
 }
 
 html {
+  /* Single knob for the whole type scale — every font-size below is in rem.
+     106.25% of the 16px default = a 17px base. */
+  font-size: 106.25%;
   background: var(--bg);
   color: var(--fg);
 }
@@ -132,7 +103,7 @@ i {
   background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 0 0 8px 0;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .skip-link:focus {
@@ -151,7 +122,7 @@ i {
 
 .eyebrow {
   margin: 0 0 6px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -164,7 +135,7 @@ i {
 
 .page__title {
   margin: 0 0 24px;
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -179,7 +150,7 @@ i {
 
 .page__intro {
   margin: 0 0 26px;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--muted);
 }
 
@@ -217,7 +188,7 @@ i {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
@@ -255,7 +226,7 @@ i {
 }
 
 .sidebar__brand {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -264,7 +235,7 @@ i {
 
 .sidebar__role {
   margin: 10px 0 0;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -274,7 +245,7 @@ i {
   flex-direction: column;
   gap: 13px;
   margin-top: 42px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .nav__link {
@@ -298,7 +269,7 @@ i {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
@@ -352,7 +323,7 @@ i {
 .home__headline {
   margin: 0 0 28px;
   max-width: 22ch;
-  font-size: 29px;
+  font-size: 1.8125rem;
   font-weight: 600;
   line-height: 1.28;
   letter-spacing: -0.02em;
@@ -361,7 +332,7 @@ i {
 .home__lede {
   margin: 0 0 52px;
   max-width: 52ch;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.7;
   color: var(--muted);
 }
@@ -378,12 +349,12 @@ i {
 .recent__date {
   flex: none;
   width: 86px;
-  font: 500 12px/1.6 var(--font-mono);
+  font: 500 0.75rem/1.6 var(--font-mono);
   color: var(--muted);
 }
 
 .recent__title {
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 500;
   color: var(--fg);
 }
@@ -398,7 +369,7 @@ i {
 
 .about__para {
   margin: 0 0 16px;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.75;
 }
 
@@ -419,19 +390,19 @@ i {
 
 .about__area {
   padding: 4px 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .about__edu {
   display: flex;
   gap: 14px;
   padding: 4px 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .about__edu-year {
   min-width: 38px;
-  font: 500 12px/1.6 var(--font-mono);
+  font: 500 0.75rem/1.6 var(--font-mono);
   color: var(--muted);
 }
 
@@ -440,7 +411,7 @@ i {
   margin-top: 34px;
   padding-bottom: 3px;
   border-bottom: 1px solid var(--line);
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--accent);
   text-decoration: none;
@@ -462,13 +433,13 @@ i {
 .post-row__date {
   display: block;
   margin-bottom: 8px;
-  font: 500 12px/1 var(--font-mono);
+  font: 500 0.75rem/1 var(--font-mono);
   color: var(--muted);
 }
 
 .post-row__title {
   margin: 0 0 5px;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -484,7 +455,7 @@ i {
 .post-row__excerpt {
   margin: 0;
   max-width: 58ch;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -500,7 +471,7 @@ i {
 .article__back {
   display: block;
   margin-bottom: 28px;
-  font: 500 13px/1 var(--font-mono);
+  font: 500 0.8125rem/1 var(--font-mono);
   color: var(--accent);
   text-decoration: none;
 }
@@ -538,7 +509,7 @@ i {
 
 .figure__caption {
   margin-top: 11px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-style: italic;
   line-height: 1.5;
   color: var(--muted);
@@ -556,13 +527,13 @@ i {
 .article__date {
   display: block;
   margin-bottom: 14px;
-  font: 500 12px/1 var(--font-mono);
+  font: 500 0.75rem/1 var(--font-mono);
   color: var(--muted);
 }
 
 .article__title {
   margin: 0 0 26px;
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -570,7 +541,7 @@ i {
 
 .article__lede {
   margin: 0 0 22px;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
   line-height: 1.75;
   color: var(--fg);
@@ -578,7 +549,7 @@ i {
 
 .article__body p {
   margin: 0 0 22px;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -599,7 +570,7 @@ i {
   margin: 0;
   padding: 16px 0;
   border-top: 1px solid var(--line);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -621,7 +592,7 @@ i {
 
 .pub__pdf {
   flex: none;
-  font: 500 12px/1 var(--font-mono);
+  font: 500 0.75rem/1 var(--font-mono);
   color: var(--accent);
   text-decoration: none;
 }
@@ -636,7 +607,7 @@ i {
 
 .contact__intro {
   margin: 0 0 36px;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.75;
   color: var(--muted);
 }
@@ -650,13 +621,13 @@ i {
   gap: 24px;
   padding: 15px 0;
   border-top: 1px solid var(--line);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .contact__key {
   flex: none;
   width: 120px;
-  font: 500 12px/1.6 var(--font-mono);
+  font: 500 0.75rem/1.6 var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--muted);
@@ -671,7 +642,7 @@ i {
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 30px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* ==========================================================================
@@ -696,7 +667,7 @@ i {
   }
 
   .mobile-header__brand {
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     text-decoration: none;
@@ -730,7 +701,7 @@ i {
   }
 
   .mobile-menu__title {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
   }
 
@@ -739,7 +710,7 @@ i {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 1;
     color: var(--muted);
   }
@@ -753,7 +724,7 @@ i {
 
   .menu__link {
     padding: 9px 0;
-    font-size: 26px;
+    font-size: 1.625rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     text-decoration: none;
@@ -770,12 +741,12 @@ i {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--muted);
   }
 
   .mobile-menu__foot .theme-toggle {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .mobile-menu__foot .theme-toggle__dot {
@@ -793,19 +764,19 @@ i {
   .home__headline {
     margin-bottom: 20px;
     max-width: none;
-    font-size: 23px;
+    font-size: 1.4375rem;
     line-height: 1.3;
   }
 
   .home__lede {
     margin-bottom: 34px;
     max-width: none;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.65;
   }
 
   .eyebrow {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
 
   .recent__row {
@@ -816,17 +787,17 @@ i {
 
   .recent__date {
     width: auto;
-    font-size: 11px;
+    font-size: 0.6875rem;
     line-height: 1;
   }
 
   .recent__title {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .page__title {
     margin-bottom: 18px;
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .page__title--tight {
@@ -838,7 +809,7 @@ i {
   }
 
   .about__para {
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.7;
   }
 
@@ -857,21 +828,21 @@ i {
 
   .post-row__date {
     margin-bottom: 6px;
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
 
   .post-row__title {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .post-row__excerpt {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.55;
   }
 
   .article__back {
     margin-bottom: 20px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .article__cover {
@@ -889,36 +860,36 @@ i {
 
   .figure__caption {
     margin-top: 9px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .article__date {
     margin-bottom: 12px;
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
 
   .article__title {
     margin-bottom: 20px;
-    font-size: 23px;
+    font-size: 1.4375rem;
     line-height: 1.25;
   }
 
   .article__lede {
     margin-bottom: 18px;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.7;
   }
 
   .article__body p {
     margin-bottom: 18px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.75;
   }
 
   .pub,
   .pub-row .pub {
     padding: 14px 0;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.55;
   }
 
@@ -937,7 +908,7 @@ i {
 
   .contact__intro {
     margin-bottom: 28px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.7;
   }
 
@@ -949,12 +920,12 @@ i {
 
   .contact__key {
     width: auto;
-    font-size: 11px;
+    font-size: 0.6875rem;
     line-height: 1;
   }
 
   .contact__value {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 

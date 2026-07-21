@@ -26,8 +26,13 @@
     })();
   </script>
 
-  <link rel="preload" href="/assets/fonts/karla.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
+  {# Only the weights the stylesheet actually uses. Karla is variable, so the
+     `400..700` range ships as one file; IBM Plex Mono is static and is used at
+     500 only. #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Karla:ital,wght@0,400..700;1,400&display=swap">
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
