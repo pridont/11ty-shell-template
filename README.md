@@ -1,6 +1,6 @@
-# gz-site
+# Academic Personal Site Template
 
-Academic personal site. Eleventy 3, plain CSS, no runtime dependencies.
+Academic personal site. Eleventy 3, plain CSS, and content amnager shell. No runtime dependencies.
 
 ```sh
 npm install
