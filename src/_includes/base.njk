@@ -4,10 +4,46 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {# Name comes from profile.json only — site.json deliberately has no `title`, so there
-     is one place to change who the site belongs to. #}
-  <title>{% if title %}{{ title }} · {{ profile.name }}{% else %}{{ profile.name }} — {{ profile.role }}, {{ profile.institution }}{% endif %}</title>
-  <meta name="description" content="{{ description | default(excerpt) | default(profile.name + " — " + site.description) }}">
+  {# Name comes from profile.json only — site.js deliberately has no `title`, so there
+     is one place to change who the site belongs to. Computed once here because the
+     <title>, og:title and the share card must not drift apart. #}
+  {%- set pageTitle = title + " · " + profile.name if title else profile.name + " — " + profile.role + ", " + profile.institution -%}
+  {%- set pageDesc = description | default(excerpt) | default(profile.name + " — " + site.description) -%}
+  {%- set canonical = page.url | absoluteUrl(site.url) -%}
+  {%- set isArticle = "writing" in (tags | default([])) -%}
+  {%- set ogImage = cover | default(site.ogImage) -%}
+
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDesc }}">
+
+  {# Previews and branch deploys are duplicates of production; the 404 is a soft
+     error page. Neither should end up in an index. #}
+  {%- if noindex or not site.indexable %}
+  <meta name="robots" content="noindex, follow">
+  {%- else %}
+  <link rel="canonical" href="{{ canonical }}">
+  {%- endif %}
+
+  <meta property="og:type" content="{{ "article" if isArticle else "website" }}">
+  <meta property="og:site_name" content="{{ profile.name }}">
+  <meta property="og:locale" content="{{ site.ogLocale }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDesc }}">
+  <meta property="og:image" content="{{ ogImage | absoluteUrl(site.url) }}">
+  <meta property="og:image:alt" content="{{ coverAlt | default(site.ogImageAlt) }}">
+  {%- if isArticle %}
+  <meta property="article:published_time" content="{{ page.date | isoDateTime }}">
+  <meta property="article:author" content="{{ profile.name }}">
+  {%- endif %}
+
+  {# X/Twitter, Slack, LinkedIn and the rest fall back to the og:* tags above, so
+     the card type is the only thing worth stating twice. #}
+  <meta name="twitter:card" content="summary_large_image">
+
+  {# Autodiscovery: readers and browser extensions look for this on any page, not
+     just /writing/, so it belongs in the shared head. #}
+  <link rel="alternate" type="application/rss+xml" title="{{ profile.name }} — Writing" href="{{ "/feed.xml" | absoluteUrl(site.url) }}">
 
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="{{ site.themeColor.light }}" media="(prefers-color-scheme: light)">

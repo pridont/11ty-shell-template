@@ -1,0 +1,35 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+{%- if site.indexable -%}
+{#- Each crawler obeys exactly one group: the most specific User-agent match it
+    finds. A named bot therefore ignores the "*" group entirely, which is what lets
+    the two policies below coexist without ordering tricks. -#}
+# Search engines, and anything not named below.
+User-agent: *
+Allow: /
+
+# AI assistants and AI search: allowed.
+# These surface and link pages in AI answers, or fetch one page because a user
+# asked about it. Neither use trains a model.
+{% for bot in crawlers.aiSearch -%}
+User-agent: {{ bot }}
+{% endfor -%}
+Allow: /
+
+# AI model training: disallowed.
+# Per each operator's own documentation, these collect content for training
+# corpora or for datasets sold onward for that purpose.
+{% for bot in crawlers.training -%}
+User-agent: {{ bot }}
+{% endfor -%}
+Disallow: /
+
+Sitemap: {{ "/sitemap.xml" | absoluteUrl(site.url) }}
+{%- else -%}
+# Deploy preview or branch deploy — a duplicate of production, so keep it out of
+# the index entirely. The production build emits the real policy.
+User-agent: *
+Disallow: /
+{%- endif %}

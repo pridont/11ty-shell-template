@@ -19,6 +19,21 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("monthYear", (d) => monthYearFmt.format(d));
   eleventyConfig.addFilter("isoDate", (d) => d.toISOString().slice(0, 10));
+  eleventyConfig.addFilter("isoDateTime", (d) => d.toISOString());
+
+  // Canonical links, og:url, sitemap entries and robots.txt all need absolute
+  // URLs — relative ones are ignored or misread by crawlers and share cards.
+  eleventyConfig.addFilter("absoluteUrl", (path, base) => new URL(path, base).href);
+
+  // RSS 2.0 dates are RFC 822. toUTCString() emits the RFC 1123 form, which is the
+  // 4-digit-year update readers actually expect.
+  eleventyConfig.addFilter("rfc822Date", (d) => d.toUTCString());
+
+  // Feed items are read outside the site, where a root-relative src or href resolves
+  // against the reader's own origin. `(?!\/)` leaves protocol-relative URLs alone.
+  eleventyConfig.addFilter("absoluteHtml", (html, base) =>
+    String(html).replace(/\s(href|src)="\/(?!\/)/g, ` $1="${base}/`),
+  );
 
   // Nunjucks' built-in `slice` is Jinja-style chunking, not Array.prototype.slice.
   eleventyConfig.addFilter("limit", (arr, n) => arr.slice(0, n));
