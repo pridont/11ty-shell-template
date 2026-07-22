@@ -21,5 +21,17 @@ This is why I think perception belongs at the center of ethics rather than its p
 become a better person is, in large part, to become a better noticer: to see the tired
 colleague, the excluded student, the small cruelty we would rather overlook.
 
+## Two kinds of noticing
+
+It helps to separate two things that get lumped together as "attention":
+
+- **Vigilance** — scanning for what is relevant to *me*: threats, opportunities, tasks.
+- **Regard** — attending to what is relevant to *someone else*, for no return at all.
+
+The first is trainable by almost any incentive. The second is not, which is exactly why it is
+the one worth cultivating on purpose.
+
+> To pay attention is our endless and proper work.
+
 None of this is fast, and none of it is heroic. It is the slow, unglamorous work of learning
 to look — and then looking again.
