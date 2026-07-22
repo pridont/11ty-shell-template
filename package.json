@@ -9,6 +9,7 @@
     "build": "eleventy",
     "clean": "rm -rf _site",
     "favicon": "node scripts/generate-favicon.js",
+    "content": "node scripts/content.js",
     "debug": "DEBUG=Eleventy* eleventy"
   },
   "devDependencies": {

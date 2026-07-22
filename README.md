@@ -31,6 +31,36 @@ matter. Drop a new `.md` in and it appears on `/writing/` and in the home page's
 most recent, newest first. Add `draft: true` to keep one out of production builds while
 still seeing it under `npm run dev`.
 
+### Managing posts
+
+```sh
+npm run content
+```
+
+An interactive shell for the whole lifecycle. The post list doubles as a status view —
+`●` live, `○` draft, plus the branch and how far ahead of `origin` you are — and pressing
+enter on a post opens its actions.
+
+| Action        | What it does                                                                                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **new**       | Asks for a title, offers the derived slug for editing, writes the file, commits. The slug is the permalink, so it's worth a look before agreeing to it.           |
+| **publish**   | Drops `draft: true`, commits, then asks before pushing. Refuses while the excerpt is still the placeholder — it becomes the meta description and the RSS summary. |
+| **unpublish** | Puts `draft: true` back, commits, asks before pushing. The URL will 404 afterwards.                                                                               |
+| **edit**      | Opens `$EDITOR` (or `$VISUAL`), then offers to commit whatever changed.                                                                                           |
+| **preview**   | Runs the dev server and prints the post's URL. Drafts are visible here and nowhere else.                                                                          |
+| **delete**    | `git rm` + commit, asks before pushing. Recoverable from history.                                                                                                 |
+
+**Publishing pushes, and pushing deploys** — Netlify builds from the remote, so a push is
+the moment the site changes. Every action commits, but only publish, unpublish and delete
+offer to push, and each shows the commits and the diffstat before asking. Nothing is
+pushed without a `y`.
+
+`--dry-run` prints the git commands instead of running them, which is a cheap way to watch
+the first run. `--help` lists the flags.
+
+Nothing here is required: the files are ordinary markdown and git still works normally.
+`draft: true` is the same front-matter flag either way.
+
 ### Images in essays
 
 A **cover image** is optional front matter. It renders full-width at 16:9 between the
