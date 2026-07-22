@@ -7,11 +7,11 @@
  * `| safe`, so treat them as markup, not text.
  */
 export default {
-  name: "Evelyn Hart",
-  nameLines: ["Evelyn", "Hart"],
+  name: "John Doe",
+  nameLines: ["John", "Doe"],
   role: "Professor of Philosophy",
   institution: "UC Berkeley",
-  email: "ehart@berkeley.edu",
+  email: "johndoe@berkeley.edu",
 
   cv: {
     label: "Download CV",
@@ -26,8 +26,8 @@ export default {
 
   about: {
     body: [
-      "Evelyn Hart is a Professor of Philosophy at the University of California, Berkeley, where she has taught since 2014. Her research asks how perception and attention figure in the moral life — how we come to see a situation as calling for one response rather than another.",
-      "She is the author of <em>The Weight of Small Acts</em> (Oxford, 2022) and writes regularly for a general audience. Before Berkeley she held a research fellowship at the University of Toronto.",
+      "John Doe is a Professor of Philosophy at the University of California, Berkeley, where he has taught since 2014. His research asks how perception and attention figure in the moral life — how we come to see a situation as calling for one response rather than another.",
+      "He is the author of <em>The Weight of Small Acts</em> (Oxford, 2022) and writes regularly for a general audience. Before Berkeley he held a research fellowship at the University of Toronto.",
     ],
     areas: ["Ethics", "Moral psychology", "Philosophy of perception"],
     education: [
@@ -42,11 +42,11 @@ export default {
     rows: [
       {
         label: "Email",
-        value: "ehart@berkeley.edu",
-        href: "mailto:ehart@berkeley.edu",
+        value: "johndoe@berkeley.edu",
+        href: "mailto:johndoe@berkeley.edu",
       },
       { label: "Office", value: "314 Moses Hall, UC Berkeley" },
-      { label: "Hours", value: "Tuesdays, 2–4pm (term)" },
+      { label: "Hours", value: "Tuesdays, 2-4pm (term)" },
       { label: "Mail", value: "Dept. of Philosophy, Berkeley CA 94720" },
     ],
     links: [

@@ -45,6 +45,10 @@
      just /writing/, so it belongs in the shared head. #}
   <link rel="alternate" type="application/rss+xml" title="{{ profile.name }} — Writing" href="{{ "/feed.xml" | absoluteUrl(site.url) }}">
 
+  {# Monogram built from profile.js by `npm run favicon`. One file for both
+     themes — it carries its own prefers-color-scheme block. #}
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="{{ site.themeColor.light }}" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="{{ site.themeColor.dark }}" media="(prefers-color-scheme: dark)">

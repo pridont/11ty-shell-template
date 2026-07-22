@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JD">
+  <style>
+    :root { --tile: #a74639; --ink: #faf8f4 }
+    @media (prefers-color-scheme: dark) {
+      :root { --tile: #e8907f; --ink: #120e09 }
+    }
+  </style>
+  <rect width="64" height="64" rx="14" fill="var(--tile)"/>
+  <text x="32" y="32" fill="var(--ink)"
+        font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-weight="700" font-size="30" letter-spacing="-1"
+        text-anchor="middle" dominant-baseline="central">JD</text>
+</svg>

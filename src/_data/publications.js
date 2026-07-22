@@ -8,7 +8,7 @@
 export default [
   {
     type: "article",
-    authors: "Hart, E.",
+    authors: "Doe, J.",
     year: "2024",
     title: "Moral Attention and the Ethics of Perception",
     venue: "Journal of Ethics 28(3), 401–429",
@@ -16,14 +16,14 @@ export default [
   },
   {
     type: "book",
-    authors: "Hart, E.",
+    authors: "Doe, J.",
     year: "2022",
     title: "The Weight of Small Acts: Essays on Everyday Ethics",
     venue: "Oxford University Press",
   },
   {
     type: "article",
-    authors: "Hart, E. & Nguyen, T.",
+    authors: "Doe, J. & Nguyen, T.",
     year: "2021",
     title: "Agency Without Deliberation",
     venue: "Mind 130(518), 511–540",
@@ -31,7 +31,7 @@ export default [
   },
   {
     type: "article",
-    authors: "Hart, E.",
+    authors: "Doe, J.",
     year: "2019",
     title: "Habit, Skill, and the Shape of a Life",
     venue: "Philosophy & Phenomenological Research 99(2), 223–248",

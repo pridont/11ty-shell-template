@@ -12,13 +12,13 @@ npm run build   # -> _site/
 
 Nothing person-specific lives in the templates. Everything is in `src/_data/`:
 
-| File | Holds |
-| --- | --- |
-| `profile.js` | Name, role, institution, email, CV link, home headline and lede, about text, areas, education, contact rows, social links |
-| `publications.js` | One array. `type: "book"` or `type: "article"` decides which heading an entry renders under; `pdf` is optional and the link is omitted when absent |
-| `navigation.js` | The five nav items, in order |
-| `site.js` | Site-level only — origin, language, meta description, social-card fallback, browser theme colors. Deliberately has no `title`: the name comes from `profile.js` so there is one place to change it |
-| `crawlers.js` | Which AI crawlers `robots.txt` allows and blocks — see [AI crawlers](#ai-crawlers) |
+| File              | Holds                                                                                                                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profile.js`      | Name, role, institution, email, CV link, home headline and lede, about text, areas, education, contact rows, social links                                                                          |
+| `publications.js` | One array. `type: "book"` or `type: "article"` decides which heading an entry renders under; `pdf` is optional and the link is omitted when absent                                                 |
+| `navigation.js`   | The five nav items, in order                                                                                                                                                                       |
+| `site.js`         | Site-level only — origin, language, meta description, social-card fallback, browser theme colors. Deliberately has no `title`: the name comes from `profile.js` so there is one place to change it |
+| `crawlers.js`     | Which AI crawlers `robots.txt` allows and blocks — see [AI crawlers](#ai-crawlers)                                                                                                                 |
 
 All of them are ES modules with a default export, not JSON, so they can carry comments
 and — in `site.js` — read the deploy environment.
@@ -57,12 +57,12 @@ Covers load eagerly (they are above the fold); body figures are lazy.
 
 Generated on every build, all from `site.url`:
 
-| Output | From | Notes |
-| --- | --- | --- |
-| `/sitemap.xml` | `sitemap.njk` | Every page except `noindex` ones and the 404 |
-| `/feed.xml` | `feed.njk` | RSS 2.0, 20 most recent essays, full bodies in `content:encoded`. Linked from `<head>` on every page |
-| `/robots.txt` | `robots.njk` | Policy below |
-| `/404.html` | `404.njk` | `netlify.toml` serves it for any unmatched path |
+| Output         | From          | Notes                                                                                                |
+| -------------- | ------------- | ---------------------------------------------------------------------------------------------------- |
+| `/sitemap.xml` | `sitemap.njk` | Every page except `noindex` ones and the 404                                                         |
+| `/feed.xml`    | `feed.njk`    | RSS 2.0, 20 most recent essays, full bodies in `content:encoded`. Linked from `<head>` on every page |
+| `/robots.txt`  | `robots.njk`  | Policy below                                                                                         |
+| `/404.html`    | `404.njk`     | `netlify.toml` serves it for any unmatched path                                                      |
 
 `base.njk` emits canonical, Open Graph and Twitter-card tags for every page. Essays use
 their own `cover`/`coverAlt` as the social image and fall back to `site.ogImage`.
@@ -84,12 +84,13 @@ a user agent is unaffected; the training/search split is each vendor's claim abo
 bot; and blocking does not remove already-crawled data. `facebookexternalhit` is
 deliberately left allowed — it renders link previews from the `og:` tags.
 
-## Still to supply
+## Supplied by Site Owner
 
 - `src/assets/cv.pdf` — the "Download CV" links point at it.
 - The real domain in `site.js` (`FALLBACK_ORIGIN`, currently `https://example.com`).
   Netlify overrides it on deploy, so this only affects local builds and other hosts.
-- Real Google Scholar / PhilPapers URLs in `profile.contact.links`.
+- Profile data in `src/_data/profile.js`.
+- `src/assets/favicon.svg` — regenerate with `npm run favicon` after changing the name.
 
 ## Theming
 
@@ -98,6 +99,39 @@ the top of `src/css/style.css`. The stylesheet has no `prefers-color-scheme` blo
 purpose — an inline script in `<head>` always writes an explicit `data-theme` before first
 paint, which avoids both a flash and the specificity tie where a media query silently
 overrides a user's explicit choice.
+
+## Favicon
+
+The favicon is a monogram of the site owner's initials, generated from the data files
+rather than drawn by hand:
+
+```sh
+npm run favicon        # -> src/assets/favicon.svg
+```
+
+It reads `nameLines` (falling back to `name`) from `profile.js` for the letters, the
+`--accent` token from `style.css` for the tile, and `themeColor` from `site.js` for the
+letters' color — so the icon can't drift away from the theme. If `--accent` ever stops
+being a hex value the script warns and falls back to the current pair rather than failing.
+
+One SVG covers both themes: it carries its own `prefers-color-scheme` block, so the tile
+switches to the dark accent along with the page. The letters use a system font stack —
+browser chrome renders favicons outside the page, where the site's webfonts don't exist.
+
+This is a manual tool on purpose. It is not part of `npm run build` and Netlify never runs
+it; the generated SVG is committed, so a deploy never depends on it. Re-run it when the
+name or the accent color changes.
+
+| Flag               | Effect                                            |
+| ------------------ | ------------------------------------------------- |
+| `--out <path>`     | Write somewhere else                              |
+| `--initials <str>` | Override the derived letters                      |
+| `--print`          | Write to stdout instead of a file, for previewing |
+
+Pass them through npm with `--`, e.g. `npm run favicon -- --print`.
+
+Safari ignores SVG favicons; there is no `.ico` fallback, which keeps the project free of
+a rasterizer dependency.
 
 ## Deploying
 
