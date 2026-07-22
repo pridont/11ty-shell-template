@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Page not found
+permalink: /404.html
+---
+<div class="measure-56">
+  <p class="eyebrow">Error 404</p>
+  <h1 class="page__title page__title--tight">Page not found</h1>
+  <p class="page__intro">This page doesn&rsquo;t exist &mdash; the link may be broken, or the page may have moved since it was written. The way out is below.</p>
+
+  <img class="notfound__img" src="/assets/images/leave.jpg"
+       alt="A man in a dark suit standing before red curtains, captioned &ldquo;Where am I, and how can I leave?&rdquo;"
+       width="1200" height="675" fetchpriority="high" decoding="async">
+
+  <div class="notfound__links">
+    {% for item in navigation %}
+      <a class="link-accent link-accent--bold" href="{{ item.url }}">{{ item.text }}</a>
+    {% endfor %}
+  </div>
+</div>

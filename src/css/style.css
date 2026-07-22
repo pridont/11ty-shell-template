@@ -1,16 +1,3 @@
-/* ==========================================================================
-   Design tokens
-
-   Fonts come from Google Fonts — see the <link> in _includes/base.njk, which
-   requests only the weights used here: Karla 400–700 upright + 400 italic,
-   IBM Plex Mono 500.
-
-   The <head> script always writes an explicit data-theme, so there is
-   deliberately no @media (prefers-color-scheme) block here. Adding one would
-   tie with [data-theme="light"] on specificity (0,1,0) and silently override a
-   user's explicit choice on dark-OS machines.
-   ========================================================================== */
-
 :root {
   color-scheme: light;
 
@@ -51,8 +38,6 @@
 }
 
 html {
-  /* Single knob for the whole type scale — every font-size below is in rem.
-     106.25% of the 16px default = a 17px base. */
   font-size: 106.25%;
   background: var(--bg);
   color: var(--fg);
@@ -171,9 +156,15 @@ i {
   font-weight: 600;
 }
 
-.measure-52 { max-width: 52ch; }
-.measure-56 { max-width: 56ch; }
-.measure-60 { max-width: 60ch; }
+.measure-52 {
+  max-width: 52ch;
+}
+.measure-56 {
+  max-width: 56ch;
+}
+.measure-60 {
+  max-width: 60ch;
+}
 
 /* ==========================================================================
    Theme toggle
@@ -483,8 +474,6 @@ i {
 .article__cover {
   display: block;
   width: 100%;
-  /* height:auto is load-bearing — the width/height attributes on the <img> become
-     presentational hints, and with both dimensions definite aspect-ratio is ignored. */
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -515,7 +504,6 @@ i {
   color: var(--muted);
 }
 
-/* Plain markdown ![alt](src), which has no class of its own. */
 .article__body img:not([class]) {
   display: block;
   max-width: 100%;
@@ -638,6 +626,29 @@ i {
 }
 
 .contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   404
+   ========================================================================== */
+
+.notfound__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: 4px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.notfound__links {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -926,6 +937,15 @@ i {
 
   .contact__value {
     font-size: 1rem;
+  }
+
+  .notfound__img {
+    border-radius: 12px;
+  }
+
+  .notfound__links {
+    gap: 16px;
+    margin-top: 24px;
   }
 }
 

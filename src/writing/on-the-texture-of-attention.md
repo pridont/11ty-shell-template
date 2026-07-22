@@ -2,7 +2,7 @@
 title: On the Texture of Attention
 date: 2026-03-15
 excerpt: Why noticing is itself a moral act, and what we miss when we optimize it away.
-cover: /assets/images/treescape.jpg
+cover: /assets/images/cover.jpg
 coverAlt: Fog settling between forested ridges at first light.
 ---
 

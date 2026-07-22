@@ -5,3 +5,10 @@
 [build.environment]
   # Pinned: Netlify's default moved to Node 24 in 2026.
   NODE_VERSION = "22"
+
+# Catch-all fallback. Unforced rules only fire when no published file matches the
+# request, so real pages and assets are unaffected.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
