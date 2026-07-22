@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {# Name comes from profile.json only — site.js deliberately has no `title`, so there
+  {# Name comes from profile.js only — site.js deliberately has no `title`, so there
      is one place to change who the site belongs to. Computed once here because the
      <title>, og:title and the share card must not drift apart. #}
   {%- set pageTitle = title + " · " + profile.name if title else profile.name + " — " + profile.role + ", " + profile.institution -%}
